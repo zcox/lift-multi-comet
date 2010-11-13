@@ -17,6 +17,9 @@ derby.log
 .project
 .manager
 
+# Ensime conf file
+.ensime
+
 # building
 target
 build

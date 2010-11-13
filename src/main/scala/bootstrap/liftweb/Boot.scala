@@ -17,7 +17,7 @@ import code.model._
  * A class that's instantiated early and run.  It allows the application
  * to modify lift's environment
  */
-class Boot {
+class Boot extends Logger {
   def boot {
     if (!DB.jndiJdbcConnAvailable_?) {
       val vendor = 
@@ -34,7 +34,14 @@ class Boot {
     // Use Lift's Mapper ORM to populate the database
     // you don't need to use Mapper to use Lift... use
     // any ORM you want
-    Schemifier.schemify(true, Schemifier.infoF _, User)
+    Schemifier.schemify(true, Schemifier.infoF _, User, Statement, Vote)
+
+    if (Statement.count == 0) {
+      info("Creating default Statements...")
+      Statement.create.text("Lift is totally rad").save
+      Statement.create.text("Lift has really great Comet support").save
+      Statement.create.text("The sky is blue and white").save
+    }
 
     // where to search snippet
     LiftRules.addToPackages("code")
