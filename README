@@ -2,9 +2,9 @@ Install Java, Simple Build Tool, and Git
 
 Clone this repository with:
 
-git clone https://github.com/lift/lift_21_sbt.git
+git clone git://github.com/zcox/lift-multi-comet.git
 
-Then cd into lift_21_sbt and type:
+Then cd into lift-multi-comet and type:
 sbt
 
 At the sbt prompt, type:
@@ -16,4 +16,28 @@ jetty-run
 Point your browser to:
 http://localhost:8080/
 
-Voila a running Lift app
+To demonstrate the browser refresh problem, at the sbt prompt type:
+jetty-restart
+
+Wait a few seconds and you should start seeing a lot of requests like this:
+
+INFO - Service request (GET) /comet_request/56730281010/p20stpyce6sn took 2 Milliseconds
+INFO - Service request (GET) /comet_request/95556466632/j2lu78mok5rc took 1 Milliseconds
+INFO - Service request (GET) /comet_request/41828411656/p20stpyce6sn took 2 Milliseconds
+INFO - Service request (GET) /comet_request/8603599045/j2lu78mok5rc took 2 Milliseconds
+INFO - Service request (GET) /comet_request/34358344610/p20stpyce6sn took 1 Milliseconds
+INFO - Service request (GET) /comet_request/71260635960/j2lu78mok5rc took 2 Milliseconds
+INFO - Service request (GET) /comet_request/78932503312/p20stpyce6sn took 1 Milliseconds
+INFO - Service request (GET) /comet_request/85371521907/j2lu78mok5rc took 1 Milliseconds
+INFO - Service request (GET) /comet_request/16096408984/p20stpyce6sn took 1 Milliseconds
+INFO - Service request (GET) /comet_request/26967315051/j2lu78mok5rc took 1 Milliseconds
+INFO - Service request (GET) /comet_request/68058391880/p20stpyce6sn took 2 Milliseconds
+INFO - Service request (GET) /comet_request/13237031471/j2lu78mok5rc took 1 Milliseconds
+INFO - Service request (GET) /comet_request/8312136614/p20stpyce6sn took 1 Milliseconds
+INFO - Service request (GET) /comet_request/92969029180/j2lu78mok5rc took 1 Milliseconds
+INFO - Service request (GET) /comet_request/94253422549/p20stpyce6sn took 1 Milliseconds
+INFO - Service request (GET) /comet_request/44986235193/j2lu78mok5rc took 1 Milliseconds
+INFO - Service request (GET) /comet_request/59756098798/p20stpyce6sn took 1 Milliseconds
+
+And then the "Vote" links will be broken.  And jetty-stop will not properly shut down Jetty.  You'll probably have to Ctrl+C to to kill Jetty and sbt.
+
