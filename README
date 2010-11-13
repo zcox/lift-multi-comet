@@ -41,3 +41,4 @@ INFO - Service request (GET) /comet_request/59756098798/p20stpyce6sn took 1 Mill
 
 And then the "Vote" links will be broken.  And jetty-stop will not properly shut down Jetty.  You'll probably have to Ctrl+C to to kill Jetty and sbt.
 
+You can also test this out on Tomcat+MySQL.  Just set up a JNDI connection named "lift" in Tomcat that points to MySQL and drop the .war into Tomcat's webapps dir. Run the app and ensure it works. Then restart Tomcat and observe the infinite requests.
